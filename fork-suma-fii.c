@@ -16,13 +16,13 @@ ce la fii si suma celor doua sume. */
 // Pipe 1: Parent -> Child1
 #define RD_FR_PARENT_P1 0   // Read from parent (in child 1)
 #define WR_TO_P1        1
-// Pipe 1: Parent -> Child2
+// Pipe 2: Parent -> Child2
 #define RD_FR_PARENT_P2 2
 #define WR_TO_P2        3
-// Pipe 1: Child1 -> Parent
+// Pipe 3: Child1 -> Parent
 #define RD_FR_P1        4
 #define WR_TO_PARENT_P1 5
-// Pipe 1: Child2 -> Parent
+// Pipe 4: Child2 -> Parent
 #define RD_FR_P2        6
 #define WR_TO_PARENT_P2 7
 
@@ -30,9 +30,9 @@ int main(){
     int proc[2] = {-2, -2};
     int pipes[8], pipeS, i;
     
-    for(i = 0; i < 8; i+=2){
-        if(pipe(&pipes[i]) == -1){
-            printf("Error creating Pipe %d", i/2+1);
+    for(i = 0; i < 4; i++){
+        if(pipe(&pipes[i*2]) == -1){
+            printf("Error creating Pipe %d", i+1);
             exit(1);
         }
     }
